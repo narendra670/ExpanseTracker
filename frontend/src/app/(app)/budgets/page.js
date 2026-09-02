@@ -35,7 +35,7 @@ export default function BudgetsPage() {
     } finally {
       setLoading(false);
     }
-  }, [month]);
+  }, [month, showToast]);
 
   useEffect(() => {
     fetchBudgets();

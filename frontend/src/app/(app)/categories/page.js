@@ -35,7 +35,7 @@ export default function CategoriesPage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [showToast]);
 
   useEffect(() => {
     fetchCategories();

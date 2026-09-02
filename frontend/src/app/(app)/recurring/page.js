@@ -43,7 +43,7 @@ export default function RecurringPage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [showToast]);
 
   useEffect(() => {
     fetchItems();

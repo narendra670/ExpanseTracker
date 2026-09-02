@@ -13,31 +13,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  useEffect(() => {
-    const storedToken = getToken();
-    if (storedToken) {
-      setToken(storedToken);
-      setAuthToken(storedToken);
-      fetchProfile(storedToken);
-    } else {
-      setLoading(false);
-    }
-  }, []);
-
-  const fetchProfile = async (tok) => {
-    try {
-      if (!tok) tok = token || getToken();
-      const res = await api.get("/auth/profile", {
-        headers: { Authorization: `Bearer ${tok}` },
-      });
-      setUser(res.data.user);
-    } catch (error) {
-      logout();
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const login = async (email, password) => {
     try {
       const res = await api.post("/auth/login", { email, password });
@@ -73,6 +48,31 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     router.push("/login");
   }, [router]);
+
+  const fetchProfile = useCallback(async (tok) => {
+    try {
+      if (!tok) tok = token || getToken();
+      const res = await api.get("/auth/profile", {
+        headers: { Authorization: `Bearer ${tok}` },
+      });
+      setUser(res.data.user);
+    } catch (error) {
+      logout();
+    } finally {
+      setLoading(false);
+    }
+  }, [token, logout]);
+
+  useEffect(() => {
+    const storedToken = getToken();
+    if (storedToken) {
+      setToken(storedToken);
+      setAuthToken(storedToken);
+      fetchProfile(storedToken);
+    } else {
+      setLoading(false);
+    }
+  }, [fetchProfile]);
 
   const updateUser = (data) => {
     setUser((prev) => ({ ...prev, ...data }));

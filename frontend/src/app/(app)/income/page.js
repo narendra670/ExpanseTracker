@@ -46,7 +46,7 @@ export default function IncomePage() {
     } finally {
       setLoading(false);
     }
-  }, [search, filterCategory]);
+  }, [search, filterCategory, showToast]);
 
   const fetchCategories = async () => {
     try {
@@ -57,7 +57,7 @@ export default function IncomePage() {
 
   useEffect(() => {
     fetchIncomes(pag.page);
-  }, [pag.page, search, filterCategory]);
+  }, [fetchIncomes, pag.page]);
 
   useEffect(() => {
     fetchCategories();

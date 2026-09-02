@@ -41,7 +41,7 @@ export default function GoalsPage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [showToast]);
 
   useEffect(() => {
     fetchGoals();

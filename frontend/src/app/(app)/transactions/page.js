@@ -46,11 +46,11 @@ export default function TransactionsPage() {
     } finally {
       setLoading(false);
     }
-  }, [search, type, category, method, startDate, endDate]);
+  }, [search, type, category, method, startDate, endDate, showToast]);
 
   useEffect(() => {
     fetchTransactions(pag.page);
-  }, [pag.page, search, type, category, method, startDate, endDate]);
+  }, [fetchTransactions, pag.page]);
 
   useEffect(() => {
     (async () => {

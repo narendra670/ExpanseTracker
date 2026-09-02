@@ -54,7 +54,7 @@ export default function ExpensesPage() {
     } finally {
       setLoading(false);
     }
-  }, [search, filterCategory, filterMethod]);
+  }, [search, filterCategory, filterMethod, showToast]);
 
   const fetchCategories = async () => {
     try {
@@ -65,7 +65,7 @@ export default function ExpensesPage() {
 
   useEffect(() => {
     fetchExpenses(pag.page);
-  }, [pag.page, search, filterCategory, filterMethod]);
+  }, [fetchExpenses, pag.page]);
 
   useEffect(() => {
     fetchCategories();
