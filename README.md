@@ -109,4 +109,4 @@ All protected routes require `Authorization: Bearer <token>`.
 - `JWT_EXPIRE` — Token expiry (default `7d`)
 
 **Frontend (`frontend/.env.local`):**
-- `NEXT_PUBLIC_API_URL` — Backend API base URL (default `http://localhost:5000/api`)
+- `API_URL` — Backend URL used by the Next.js API proxy (default `https://expansetracker-0fra.onrender.com`)
